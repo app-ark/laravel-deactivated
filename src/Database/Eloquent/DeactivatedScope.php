@@ -16,7 +16,9 @@ class DeactivatedScope implements Scope
     ];
 
     public function apply(Builder $builder, Model $model)
-    { }
+    {
+        $builder->whereNull($model->getQualifiedDeactivateAtColumn());
+    }
 
     /**
      * Extend the query builder with the needed functions.
