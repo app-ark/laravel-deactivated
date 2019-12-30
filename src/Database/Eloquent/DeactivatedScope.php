@@ -16,7 +16,11 @@ class DeactivatedScope implements Scope
     ];
 
     public function apply(Builder $builder, Model $model)
-    { }
+    {
+        if (defined(get_class($model) . '::DEACTIVATE_USING') && $model::DEACTIVATE_USING) {
+            $builder->whereNull($model->getQualifiedDeactivateAtColumn());
+        }
+    }
 
     /**
      * Extend the query builder with the needed functions.
