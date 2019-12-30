@@ -57,7 +57,7 @@ class DeactivatedScope implements Scope
     protected function addWithDeactivated(Builder $builder)
     {
         $builder->macro('withDeactivated', function (Builder $builder) {
-            return $builder;
+            return $builder->withoutGlobalScope($this);
         });
     }
 
