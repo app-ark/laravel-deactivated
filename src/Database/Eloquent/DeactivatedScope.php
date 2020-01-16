@@ -77,8 +77,7 @@ class DeactivatedScope implements Scope
              * @var \Illuminate\Database\Eloquent\Model|Deactivates $model
              */
             $model = $builder->getModel();
-
-            $builder->whereNotNull(
+            $builder->withoutGlobalScope($this)->whereNotNull(
                 $model->getQualifiedDeactivateAtColumn()
             );
 
@@ -96,7 +95,7 @@ class DeactivatedScope implements Scope
         $builder->macro('onlyActivated', function (Builder $builder) {
             $model = $builder->getModel();
 
-            $builder->whereNull(
+            $builder->withoutGlobalScope($this)->whereNull(
                 $model->getQualifiedDeactivateAtColumn()
             );
 
